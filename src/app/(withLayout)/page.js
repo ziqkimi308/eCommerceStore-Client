@@ -6,9 +6,11 @@ export const revalidate = 30
 export default async function Home({ searchParams }) {
 	const params = await searchParams
 
-	
-	const products = await getProducts(params)
-	const productTypeRes = await getProductTypes()
+	// Parallel fetching
+	const [products, productTypeRes] = await Promise.all([
+		getProducts(params),
+		getProductTypes()
+	])
 	const productTypes = [
 		{ label: "All", value: "all" },
 		...productTypeRes?.data?.map((item) => ({ label: item.name, value: item.id }))

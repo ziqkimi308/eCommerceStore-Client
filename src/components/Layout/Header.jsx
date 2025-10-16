@@ -88,11 +88,13 @@ export default function Header() {
 	// Fetching data for specific customer
 	useEffect(() => {
 		// We created another function because we want to use await
-		const fetchedData = async () => {
-			const res = await getCustomerData();
-			setCustomerData(res?.data);
-		};
-		fetchedData();
+		if (!customerData?.id) {
+			const fetchedData = async () => {
+				const res = await getCustomerData();
+				setCustomerData(res?.data);
+			};
+			fetchedData();
+		}
 	}, []);
 
 	// Handle logout
@@ -151,11 +153,10 @@ export default function Header() {
 								>
 									My Wishlist
 								</Link>
-								<button 
-								className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 w-full text-left"
-								onClick={handleLogout}
+								<button
+									className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 w-full text-left"
+									onClick={handleLogout}
 								>
-									
 									Logout
 								</button>
 							</div>
