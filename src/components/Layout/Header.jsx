@@ -95,7 +95,7 @@ export default function Header() {
 			};
 			fetchedData();
 		}
-	}, []);
+	}, [customerData?.id, setCustomerData]);
 
 	// Handle logout
 	const handleLogout = async () => {
