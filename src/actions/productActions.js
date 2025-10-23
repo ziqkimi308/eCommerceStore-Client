@@ -10,7 +10,12 @@ export async function getProducts(params) {
 	delete filteredParams.openAccordian
 
 	const res = await fetch(`${BASE_URL}/api/products?${objectToQueryString(filteredParams)}`,
-		{ cache: 'no-store' }
+		{
+			cache: 'no-store', // Always fresh for filtered results
+			next: {
+				tags: ['products'] // For revalidation
+			} 
+		}
 	)
 	const data = await res.json()
 
@@ -21,7 +26,12 @@ export async function getProducts(params) {
 // Fetch product type
 export async function getProductTypes() {
 	const res = await fetch(`${BASE_URL}/api/products/product-type`,
-		{next: {revalidate: 120}}
+		{
+			next: {
+				revalidate: 300, // Cache for 5 minutes
+				tags: ['product-types']
+			}
+		}
 	)
 	const data = await res.json()
 
@@ -31,7 +41,12 @@ export async function getProductTypes() {
 // Fetch unique product
 export async function getProductById(productId) {
 	const res = await fetch(`${BASE_URL}/api/products/${productId}`,
-		{next: {revalidate: 60}}
+		{
+			next: {
+				revalidate: 60, // Cache for 1 minute
+				tags: [`product-${productId}`]
+			}
+		}
 	)
 	const data = await res.json()
 
