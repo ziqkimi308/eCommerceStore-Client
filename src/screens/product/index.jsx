@@ -48,7 +48,7 @@ export default function Product({ product }) {
 			{/* Image */}
 			<div className="w-full h-full bg-gray-100 rounded-xl p-3">
 				<Image
-					className="w-full h-full max-h-[calc(100vh-150px)] rounded-xl m-auto" // image dimension controlled by either this or width and height
+					className="w-full h-full max-h-[calc(100vh-150px)] max-w-86 rounded-xl m-auto" // image dimension controlled by either this or width and height
 					src={`${BASE_URL}${product?.image}`}
 					alt="product"
 					width={0}
