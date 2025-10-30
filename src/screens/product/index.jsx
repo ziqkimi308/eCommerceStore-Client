@@ -44,7 +44,7 @@ export default function Product({ product }) {
 	}
 
 	return (
-		<div className="my-10 p-5 rounded-xl bg-white grid grid-cols-2 gap-5">
+		<div className="my-10 p-5 rounded-xl bg-white grid grid-cols-2 gap-5 max-w-4xl mx-auto">
 			{/* Image */}
 			<div className="w-full h-full bg-gray-100 rounded-xl p-3">
 				<Image

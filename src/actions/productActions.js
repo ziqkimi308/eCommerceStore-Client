@@ -12,9 +12,6 @@ export async function getProducts(params) {
 	const res = await fetch(`${BASE_URL}/api/products?${objectToQueryString(filteredParams)}`,
 		{
 			cache: 'no-store', // Always fresh for filtered results
-			next: {
-				tags: ['products'] // For revalidation
-			} 
 		}
 	)
 	const data = await res.json()
@@ -27,10 +24,7 @@ export async function getProducts(params) {
 export async function getProductTypes() {
 	const res = await fetch(`${BASE_URL}/api/products/product-type`,
 		{
-			next: {
-				revalidate: 300, // Cache for 5 minutes
-				tags: ['product-types']
-			}
+			cache: 'no-store'
 		}
 	)
 	const data = await res.json()
@@ -42,10 +36,7 @@ export async function getProductTypes() {
 export async function getProductById(productId) {
 	const res = await fetch(`${BASE_URL}/api/products/${productId}`,
 		{
-			next: {
-				revalidate: 60, // Cache for 1 minute
-				tags: [`product-${productId}`]
-			}
+			cache: 'no-store',
 		}
 	)
 	const data = await res.json()

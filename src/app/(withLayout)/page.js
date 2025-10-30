@@ -1,7 +1,7 @@
 import { getProducts, getProductTypes } from "@/actions/productActions";
 import HomeScreen from "@/screens/home";
 
-export const revalidate = 30
+// export const revalidate = 30
 
 export default async function Home({ searchParams }) {
 	const params = await searchParams

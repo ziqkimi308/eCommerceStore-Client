@@ -27,9 +27,9 @@ export default function ProductCard({ product }) {
 	};
 
 	return (
-		<div className="bg-white rounded-xl shadow-lg w-full h-full min-h-[624px]">
+		<div className="bg-white rounded-xl shadow-lg w-full h-full max-w-80">
 			<Image
-				className="w-full h-full rounded-t-xl max-h-96 object-cover"
+				className="w-full h-48 rounded-t-xl object-contain"
 				src={`${BASE_URL}${product?.image}`} // ? is optional chaining which if null/undefined, returns undefined instead of error.
 				alt="product"
 				width={0}
